@@ -1,9 +1,11 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.11;
 
 import '@openzeppelin/contracts/utils/Address.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
+import '@openzeppelin/contracts/utils/Strings.sol';
 import "./Oraclize.sol";
 
 contract Ownable {
@@ -46,8 +48,14 @@ contract Pausable is Ownable {
     bool private _paused;
 
     //  2) create a public setter using the inherited onlyOwner modifier 
-    function isPaused() public view returns(bool) {
-        return _paused;
+    function setPaused(bool state) public onlyOwner {
+        require(_paused != state, "Already in required state.");
+        _paused = state;
+        if(_paused){
+            emit Paused(msg.sender);
+        } else {
+            emit Unpaused(msg.sender);
+        } 
     }
 
     //  3) create an internal constructor that sets the _paused variable to false
@@ -242,7 +250,8 @@ contract ERC721 is Pausable, ERC165 {
     function _mint(address to, uint256 tokenId) internal virtual {
 
         // revert if given tokenId already exists or given address is invalid
-        if(_exists(tokenId) || to == address(0)) revert("TokenId exists or invalid address.");
+        require(to != address(0), "Invalid address in to parameter.");
+        require(!_exists(tokenId), "Token is already minted.");
   
         // mint tokenId to given address & increase token count of owner
         _tokenOwner[tokenId] = to;
@@ -368,7 +377,7 @@ contract ERC721Enumerable is ERC165, ERC721 {
      * @param to address to receive the ownership of the given token ID
      * @param tokenId uint256 ID of the token to be transferred
      */
-    function _transferFrom(address from, address to, uint256 tokenId) internal override{
+    function _transferFrom(address from, address to, uint256 tokenId) internal override {
         super._transferFrom(from, to, tokenId);
 
         _removeTokenFromOwnerEnumeration(from, tokenId);
@@ -503,23 +512,22 @@ contract ERC721Metadata is ERC721Enumerable, usingProvable {
 
     // create external getter functions for name, symbol, and baseTokenURI
 
-    function name() public view returns (string memory) {
+    function getName() public view returns (string memory) {
         return _name;
     }
 
-    function symbol() public view returns (string memory) {
+    function getSymbol() public view returns (string memory) {
         return _symbol;
     }
 
-    function baseTokenURI() public view returns (string memory) {
+    function getBaseTokenURI() public view returns (string memory) {
         return _baseTokenURI;
     }
 
-    function tokenURI(uint256 tokenId) external view returns (string memory) {
-        require(_exists(tokenId));
+    function getTokenURI(uint256 tokenId) public view returns (string memory) {
+        require(_exists(tokenId), "Token does not exist.");
         return _tokenURIs[tokenId];
     }
-
 
     // TODO: Create an internal function to set the tokenURI of a specified tokenId
     // It should be the _baseTokenURI + the tokenId in string form
@@ -527,17 +535,16 @@ contract ERC721Metadata is ERC721Enumerable, usingProvable {
     // TIP #2: you can also use uint2str() to convert a uint to a string
         // see https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol for strConcat()
     // require the token exists before setting
-
     function setTokenURI(uint256 tokenId) internal {
         require(_exists(tokenId), "Token does not exist.");
-        _tokenURIs[tokenId] = strConcat(_baseTokenURI, uint2str(tokenId));
+        _tokenURIs[tokenId] = strConcat(_baseTokenURI, Strings.toString(tokenId));
     }
 
 }
 
 // Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
-//  1) Pass in appropriate values for the inherited ERC721Metadata contract
-//      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
+    //  1) Pass in appropriate values for the inherited ERC721Metadata contract
+    //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
 contract REToken is ERC721Metadata("RealEstate Token", "RE", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
 
     //  2) create a public mint() that does the following:
