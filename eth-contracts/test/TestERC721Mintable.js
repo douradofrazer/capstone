@@ -27,11 +27,6 @@ contract('TestERC721Mintable', async (accounts) => {
             await tokenContract.mint(user3, 4, {from: owner, gas: 3000000});
         });
  
-        it('verify owner of contract', async () => {
-            let verifiedOwner = await tokenContract.getOwner.call();
-            assert.equal(verifiedOwner, owner, 'owner does not match.')
-        });
-    
         it('should return total supply', async () => { 
             let totalSupply = await tokenContract.totalSupply.call();
             assert.equal(totalSupply, 4, 'Total supply does not match.')
@@ -61,12 +56,23 @@ contract('TestERC721Mintable', async (accounts) => {
     
     describe('have ownership properties', () => {
 
+        beforeEach(async () => { 
+            tokenContract = await ERC721Mintable.new({from: owner});
+        });
+        
         it('should fail when minting when address is not contract owner', async () => { 
-            
+            let result = false;
+            try{
+                result = await tokenContract.mint(owner, 1, {from: user1, gas: 3000000});
+            } catch(e) {
+                console.log(e.message);
+            }
+            assert.equal(result, false, 'Non-contract owner should not be able to mint.')
         })
     
         it('should return contract owner', async () => { 
-            
+            let verifiedOwner = await tokenContract.getOwner.call();
+            assert.equal(verifiedOwner, owner, 'owner does not match.')
         })
     
     });
