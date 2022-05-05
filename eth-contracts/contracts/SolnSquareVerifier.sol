@@ -70,27 +70,3 @@ contract SolnSquareVerifier is REToken {
     }
 
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
