@@ -125,6 +125,16 @@ Tokens successfully minted
 
 https://testnets.opensea.io/collection/realestatetokenz
 
+> The NFTs have been traded between sample accounts and the activiy can be found in the screenshot below.
+
+## Screenshots
+
+![token collection](docs/token-collection.PNG)
+
+![sample nft](docs/sample-nft.PNG)
+
+![nft trade activity](docs/transfer-activity.PNG)
+
 ## Contract ABI
 
 ```
