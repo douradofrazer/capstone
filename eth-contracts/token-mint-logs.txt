@@ -1,24 +1,16 @@
 truffle exec scripts\mint.js --network rinkeby
 Using network 'rinkeby'.
 
-Token minted, index: 0
-        tx: 0x831844bb63c9fd89538042a6497764ee0e508cff544fa64e7c76c36ccd530ba6
 Token minted, index: 1
-        tx: 0x088016c6223e9939284997ad4b53712481b84330dda9eaec041b63f81cfbdca6
+        tx: 0x9ffaa98d509d5c1e69c8d8e3492a1c0ba9b5c4eabbc9b9e7278ff5e1e672a7ef
 Token minted, index: 2
-        tx: 0x743525179b40f5999165b4304b7882eb29f60d9ad4c1908c319f4ef3b4197de6
+        tx: 0xa2c79ac2d03c0feb10e70ac47d6d9958c9f6a74352034831d9d503fd74b8fd2c
 Token minted, index: 3
-        tx: 0x7d08cdfe44a31a5d8631fe6960129aa597530beea0970e09ff20467024baac72
+        tx: 0x4a08d7dcd32ec7e982e62c16193c729a04356eee87b63431c5e02c1ba1f288a0
 Token minted, index: 4
-        tx: 0x97df7e35ca11ce857875906daa945c9adfb772218b1171f99352ee1ad7310e52
+        tx: 0xb41246c28321ee8450453bd632f9a1ac77b9abc2a50613ca9eeac485e9d20c9c
 Token minted, index: 5
-        tx: 0xf695c4d7ecfd9cc378b02349af00dd9e46d262c0390c61b678dfb64a4879dbc4
+        tx: 0x88a3cf75e02eb1fa9b93a2e7feb51eefd4018408c4f1403bdc5003bca2309528
 Token minted, index: 6
-        tx: 0x0225647a6374936739e18b4940422fa84e3f6557c40beb4d1068949454523a49
-Token minted, index: 7
-        tx: 0x74c57e796f8a009ab9c41a58dce765de21f632a021c1707fe2db53ea06540dd2
-Token minted, index: 8
-        tx: 0x3a07699268cc5ee2e7bbcdb20b956ca991ec21140208445aaa58ab18c1acc47d
-Token minted, index: 9
-        tx: 0xcedf3be592347a0b1447bb13018053b3370ccd34620dd74abbbe00e04c020cf7
+        tx: 0x65042dd1a5f55fafb6a47e5f2dfac66f6cb83d9dbf4558ea4fda7181818a3fc2
 Tokens successfully minted

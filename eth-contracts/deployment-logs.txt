@@ -5,12 +5,65 @@ Compiling your contracts...
 > Compiling .\contracts\ERC721Mintable.sol
 > Compiling .\contracts\ERC721Mintable.sol
 > Compiling .\contracts\Migrations.sol
-> Compiling .\contracts\Migrations.sol
 > Compiling .\contracts\Oraclize.sol
 > Compiling .\contracts\SolnSquareVerifier.sol
 > Compiling .\contracts\SolnSquareVerifier.sol
-> Compiling .\contracts\SquareVerifier.sol
-> Compiling .\contracts\SquareVerifier.sol
+> Compiling .\contracts\Verifier.sol
+> Compilation warnings encountered:
+
+    Warning: This declaration has the same name as another declaration.
+   --> project:/contracts/ERC721Mintable.sol:505:18:
+    |
+505 |     constructor (string memory name, string memory symbol, string memory baseTokenURI) public {
+    |                  ^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+   --> project:/contracts/ERC721Mintable.sol:515:5:
+    |
+515 |     function name() external view returns (string memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+,Warning: This declaration has the same name as another declaration.
+   --> project:/contracts/ERC721Mintable.sol:505:38:
+    |
+505 |     constructor (string memory name, string memory symbol, string memory baseTokenURI) public {
+    |                                      ^^^^^^^^^^^^^^^^^^^^
+Note: The other declaration is here:
+   --> project:/contracts/ERC721Mintable.sol:519:5:
+    |
+519 |     function symbol() external view returns (string memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+,Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+   --> project:/contracts/ERC721Mintable.sol:152:5:
+    |
+152 |     constructor () public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+,Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+   --> project:/contracts/ERC721Mintable.sol:338:5:
+    |
+338 |     constructor () public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+,Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+   --> project:/contracts/ERC721Mintable.sol:505:5:
+    |
+505 |     constructor (string memory name, string memory symbol, string memory baseTokenURI) public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+,Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+   --> project:/contracts/ERC721Mintable.sol:550:5:
+    |
+550 |     constructor (string memory name, st ... ty-blockchain/capstone/") public {}
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+,Warning: Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
+  --> project:/contracts/SolnSquareVerifier.sol:22:5:
+   |
+22 |     constructor(address _verifierContractAddress) ERC721Mintable ("RealEstateTokenZ", "REZ") public {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
 > Artifacts written to C:\Users\doura\git-workspace\capstone\eth-contracts\build\contracts
 > Compiled successfully using:
    - solc: 0.8.11+commit.d7f03943.Emscripten.clang
@@ -21,18 +74,18 @@ Migrations dry-run (simulation)
 ===============================
 > Network name:    'rinkeby-fork'
 > Network id:      4
-> Block gas limit: 29999972 (0x1c9c364)
+> Block gas limit: 30000000 (0x1c9c380)
 
 
 1_initial_migration.js
 ======================
 
-   Deploying 'Migrations'
+   Replacing 'Migrations'
    ----------------------
-   > block number:        10661437
-   > block timestamp:     1652331780
+   > block number:        10668747
+   > block timestamp:     1652443221
    > account:             0xD10DA32e7560Ef650dAbB392289C48bEA37AcD45
-   > balance:             0.22003865
+   > balance:             0.14222082
    > gas used:            258220 (0x3f0ac)
    > gas price:           10 gwei
    > value sent:          0 ETH
@@ -45,37 +98,37 @@ Migrations dry-run (simulation)
 2_deploy_contracts.js
 =====================
 
-   Deploying 'SquareVerifier'
-   --------------------------
-   > block number:        10661439
-   > block timestamp:     1652331787
+   Deploying 'Verifier'
+   --------------------
+   > block number:        10668749
+   > block timestamp:     1652443240
    > account:             0xD10DA32e7560Ef650dAbB392289C48bEA37AcD45
-   > balance:             0.20777275
+   > balance:             0.12995492
    > gas used:            1199052 (0x124bcc)
    > gas price:           10 gwei
    > value sent:          0 ETH
    > total cost:          0.01199052 ETH
 
 
-   Deploying 'SolnSquareVerifier'
+   Replacing 'SolnSquareVerifier'
    ------------------------------
-   > block number:        10661440
-   > block timestamp:     1652331808
+   > block number:        10668750
+   > block timestamp:     1652443312
    > account:             0xD10DA32e7560Ef650dAbB392289C48bEA37AcD45
-   > balance:             0.17289628
-   > gas used:            3487647 (0x35379f)
+   > balance:             0.09507795
+   > gas used:            3487697 (0x3537d1)
    > gas price:           10 gwei
    > value sent:          0 ETH
-   > total cost:          0.03487647 ETH
+   > total cost:          0.03487697 ETH
 
    -------------------------------------
-   > Total cost:          0.04686699 ETH
+   > Total cost:          0.04686749 ETH
 
 
 Summary
 =======
 > Total deployments:   3
-> Final cost:          0.04944919 ETH
+> Final cost:          0.04944969 ETH
 
 
 
@@ -85,21 +138,21 @@ Starting migrations...
 ======================
 > Network name:    'rinkeby'
 > Network id:      4
-> Block gas limit: 30000000 (0x1c9c380)
+> Block gas limit: 29999972 (0x1c9c364)
 
 
 1_initial_migration.js
 ======================
 
-   Deploying 'Migrations'
+   Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0x40dd897824728a977c20f7462a38940823d06872f5b39aa6d2066f3c8090f303
-   > Blocks: 1            Seconds: 16
-   > contract address:    0x09A3725a90dE696D3AA4DBf3A98b6BEA14D40718
-   > block number:        10661440
-   > block timestamp:     1652331839
+   > transaction hash:    0x3757ac417534832d9297932cd2256f08f28990cc94102d84ff2c30b9e3c1135d
+   > Blocks: 1            Seconds: 14
+   > contract address:    0xC632F1710667a84101a4c237A36173C04C3092b1
+   > block number:        10668757
+   > block timestamp:     1652443370
    > account:             0xD10DA32e7560Ef650dAbB392289C48bEA37AcD45
-   > balance:             0.21987565
+   > balance:             0.14205782
    > gas used:            274520 (0x43058)
    > gas price:           10 gwei
    > value sent:          0 ETH
@@ -115,43 +168,43 @@ Starting migrations...
 2_deploy_contracts.js
 =====================
 
-   Deploying 'SquareVerifier'
-   --------------------------
-   > transaction hash:    0xcded970bab7e996aa2c6a788b115af94498ce862011717014c943f2205a65da2
-   > Blocks: 1            Seconds: 12
-   > contract address:    0x522A9ED0c77Ca59b0ddc4d3C13644cd31823368C
-   > block number:        10661442
-   > block timestamp:     1652331869
+   Deploying 'Verifier'
+   --------------------
+   > transaction hash:    0xd045604d8fbaa256b057980649d3673bd2cffb590278daadc52327f3856a8efe
+   > Blocks: 2            Seconds: 22
+   > contract address:    0x81050066f14230b25D615E4FADAd98e02A911604
+   > block number:        10668760
+   > block timestamp:     1652443415
    > account:             0xD10DA32e7560Ef650dAbB392289C48bEA37AcD45
-   > balance:             0.20742575
+   > balance:             0.12960792
    > gas used:            1199052 (0x124bcc)
    > gas price:           10 gwei
    > value sent:          0 ETH
    > total cost:          0.01199052 ETH
 
 
-   Deploying 'SolnSquareVerifier'
+   Replacing 'SolnSquareVerifier'
    ------------------------------
-   > transaction hash:    0xe509cf4c1d3c1ccb3421bcad8cb1b99e62f9a9a9d850f739392b44427209a633
-   > Blocks: 0            Seconds: 8
-   > contract address:    0xb4463A332490274DC4C320A028176b1fbc6Bee1C
-   > block number:        10661443
-   > block timestamp:     1652331884
+   > transaction hash:    0x083c7a323de6ffc957fb065e134e2679ed4632908199d889f134ea939ddd11fe
+   > Blocks: 1            Seconds: 6
+   > contract address:    0x5A746a757dD183c648cfb7619307C3f46c5a55F6
+   > block number:        10668761
+   > block timestamp:     1652443430
    > account:             0xD10DA32e7560Ef650dAbB392289C48bEA37AcD45
-   > balance:             0.17075428
-   > gas used:            3667147 (0x37f4cb)
+   > balance:             0.09293595
+   > gas used:            3667197 (0x37f4fd)
    > gas price:           10 gwei
    > value sent:          0 ETH
-   > total cost:          0.03667147 ETH
+   > total cost:          0.03667197 ETH
 
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.04866199 ETH
+   > Total cost:          0.04866249 ETH
 
 
 Summary
 =======
 > Total deployments:   3
-> Final cost:          0.05140719 ETH
+> Final cost:          0.05140769 ETH

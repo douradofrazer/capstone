@@ -3,23 +3,23 @@ pragma solidity ^0.8.11;
 
 // Define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>
 import "./ERC721Mintable.sol";
-import "./SquareVerifier.sol";
+import "./Verifier.sol";
 
-interface Verifier {
-    struct Proof {
-        Pairing.G1Point a;
-        Pairing.G2Point b;
-        Pairing.G1Point c;
-    }
-    function verifyTx(Proof memory proof, uint[2] memory input) external view returns (bool r);
-}
+// interface Verifier {
+//     struct Proof {
+//         Pairing.G1Point a;
+//         Pairing.G2Point b;
+//         Pairing.G1Point c;
+//     }
+//     function verifyTx(Proof memory proof, uint[2] memory input) external view returns (bool r);
+// }
 
 // Define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
-contract SolnSquareVerifier is REToken {
+contract SolnSquareVerifier is ERC721Mintable {
 
     Verifier verifier;
 
-    constructor(address _verifierContractAddress) {
+    constructor(address _verifierContractAddress) ERC721Mintable ("RealEstateTokenZ", "REZ") public {
         verifier = Verifier(_verifierContractAddress);
     }
 

@@ -1,6 +1,6 @@
 const { assert } = require("chai");
 
-const ERC721Mintable = artifacts.require('REToken');
+const ERC721Mintable = artifacts.require('ERC721Mintable');
 
 let acc;
 let tokenContract;
@@ -19,7 +19,7 @@ contract('TestERC721Mintable', async (accounts) => {
     describe('match erc721 spec', () => {
 
         beforeEach(async () => { 
-            tokenContract = await ERC721Mintable.new({from: owner});
+            tokenContract = await ERC721Mintable.new("RealEstateTokenZ", "REZ", {from: owner});
             // mint multiple tokens
             await tokenContract.mint(owner, 1, {from: owner, gas: 3000000});
             await tokenContract.mint(user1, 2, {from: owner, gas: 3000000});
@@ -39,7 +39,7 @@ contract('TestERC721Mintable', async (accounts) => {
     
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
         it('should return token uri', async () => { 
-            let tokenUri = await tokenContract.getTokenURI.call(1);
+            let tokenUri = await tokenContract.tokenURI.call(1);
             assert.equal(tokenUri,'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1', 'Token uri does not match.')
         })
     
@@ -57,7 +57,7 @@ contract('TestERC721Mintable', async (accounts) => {
     describe('have ownership properties', () => {
 
         beforeEach(async () => { 
-            tokenContract = await ERC721Mintable.new({from: owner});
+            tokenContract = await ERC721Mintable.new("RealEstateTokenZ", "REZ", {from: owner});
         });
         
         it('should fail when minting when address is not contract owner', async () => { 

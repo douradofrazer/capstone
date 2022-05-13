@@ -1,4 +1,4 @@
-const SqaureVerifier = artifacts.require('SqaureVerifier');
+const SqaureVerifier = artifacts.require('Verifier');
 const SolnSquareVerifier = artifacts.require('SolnSquareVerifier');
 
 let verifierContract;

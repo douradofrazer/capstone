@@ -1,6 +1,6 @@
 const SolnSquareVerifier = artifacts.require("SolnSquareVerifier");
-const CONTRACT_ADDRESS = "0xb4463A332490274DC4C320A028176b1fbc6Bee1C";
-const TOKEN_TO_MINT = 10;
+const CONTRACT_ADDRESS = "0x5A746a757dD183c648cfb7619307C3f46c5a55F6";
+const TOKEN_TO_MINT = 5;
 const INDEX_START = 0;
 
 module.exports = function() {

@@ -143,7 +143,7 @@ library Pairing {
     }
 }
 
-contract SquareVerifier {
+contract Verifier {
     using Pairing for *;
     struct VerifyingKey {
         Pairing.G1Point alpha;

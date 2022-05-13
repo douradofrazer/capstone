@@ -96,7 +96,7 @@ contract ERC165 {
      * @dev A contract implementing SupportsInterfaceWithLookup
      * implement ERC165 itself
      */
-    constructor (){
+    constructor () {
         _registerInterface(_INTERFACE_ID_ERC165);
     }
 
@@ -149,7 +149,7 @@ contract ERC721 is Pausable, ERC165 {
 
     bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
 
-    constructor (){
+    constructor () public {
         // register the supported interfaces to conform to ERC721 via ERC165
         _registerInterface(_INTERFACE_ID_ERC721);
     }
@@ -335,7 +335,7 @@ contract ERC721Enumerable is ERC165, ERC721 {
     /**
      * @dev Constructor function
      */
-    constructor (){
+    constructor () public {
         // register the supported interface to conform to ERC721Enumerable via ERC165
         _registerInterface(_INTERFACE_ID_ERC721_ENUMERABLE);
     }
@@ -502,7 +502,7 @@ contract ERC721Metadata is ERC721Enumerable, usingProvable {
      */
 
 
-    constructor (string memory name, string memory symbol, string memory baseTokenURI) {
+    constructor (string memory name, string memory symbol, string memory baseTokenURI) public {
         // set instance var values
         _name = name;
         _symbol = symbol;
@@ -512,19 +512,19 @@ contract ERC721Metadata is ERC721Enumerable, usingProvable {
 
     // create external getter functions for name, symbol, and baseTokenURI
 
-    function getName() public view returns (string memory) {
+    function name() external view returns (string memory) {
         return _name;
     }
 
-    function getSymbol() public view returns (string memory) {
+    function symbol() external view returns (string memory) {
         return _symbol;
     }
 
-    function getBaseTokenURI() public view returns (string memory) {
+    function baseTokenUri() external view returns (string memory) {
         return _baseTokenURI;
     }
 
-    function getTokenURI(uint256 tokenId) public view returns (string memory) {
+    function tokenURI(uint256 tokenId) external view returns (string memory) {
         require(_exists(tokenId), "Token does not exist.");
         return _tokenURIs[tokenId];
     }
@@ -545,8 +545,9 @@ contract ERC721Metadata is ERC721Enumerable, usingProvable {
 // Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
     //  1) Pass in appropriate values for the inherited ERC721Metadata contract
     //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
-contract REToken is ERC721Metadata("RealEstate Token", "RE", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
+contract ERC721Mintable is ERC721Metadata{
 
+    constructor (string memory name, string memory symbol) ERC721Metadata(name, symbol, "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") public {}
     //  2) create a public mint() that does the following:
     //      -can only be executed by the contract owner
     //      -takes in a 'to' address, tokenId, and tokenURI as parameters
